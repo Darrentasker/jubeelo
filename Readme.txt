@@ -1,6 +1,6 @@
 Thanks for downloading this template!
 
-Template Name: Maundy
-Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
+Template Name: ComingSoon
+Template URL: https://bootstrapmade.com/comingsoon-free-html-bootstrap-template/
 Author: BootstrapMade.com
 License: https://bootstrapmade.com/license/

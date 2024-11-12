@@ -1,6 +1,6 @@
 /**
-* Template Name: Maundy
-* Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
+* Template Name: ComingSoon
+* Template URL: https://bootstrapmade.com/comingsoon-free-html-bootstrap-template/
 * Updated: Aug 07 2024 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
@@ -22,19 +22,19 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #ffffff; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #ffffff; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #24b7a4; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #ec0606; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color: #24b7a4; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #384a59; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #566c7f; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-color: rgba(255, 255, 255, 0.5);  /* The default color of the main navmenu links */
+  --nav-hover-color: #ffffff; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #ffffff; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #24b7a4; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #ec0606; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -54,6 +54,7 @@
 
 .transparent-background {
   --background-color: rgba(255, 255, 255, 0);
+  --surface-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Smooth scroll */
@@ -80,7 +81,7 @@ body::before {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(49, 71, 89, 0.6);
+  background: rgba(34, 34, 34, 0.8);
 }
 
 @media (min-width: 1366px) {
@@ -193,7 +194,7 @@ h6 {
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
-/* Navmenu - Desktop */
+/* Desktop Navigation */
 @media (min-width: 1200px) {
   .navmenu {
     padding: 0;
@@ -211,11 +212,20 @@ h6 {
     position: relative;
   }
 
+  .navmenu>ul>li {
+    white-space: nowrap;
+    padding: 15px 14px;
+  }
+
+  .navmenu>ul>li:last-child {
+    padding-right: 0;
+  }
+
   .navmenu a,
   .navmenu a:focus {
     color: var(--nav-color);
-    padding: 18px 15px;
-    font-size: 16px;
+    font-size: 15px;
+    padding: 0 2px;
     font-family: var(--nav-font);
     font-weight: 400;
     display: flex;
@@ -223,6 +233,7 @@ h6 {
     justify-content: space-between;
     white-space: nowrap;
     transition: 0.3s;
+    position: relative;
   }
 
   .navmenu a i,
@@ -233,8 +244,24 @@ h6 {
     transition: 0.3s;
   }
 
-  .navmenu li:last-child a {
-    padding-right: 0;
+  .navmenu>ul>li>a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: var(--accent-color);
+    visibility: hidden;
+    width: 0px;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .navmenu a:hover:before,
+  .navmenu li:hover>a:before,
+  .navmenu .active:before {
+    visibility: visible;
+    width: 100%;
   }
 
   .navmenu li:hover>a,
@@ -300,7 +327,7 @@ h6 {
   }
 }
 
-/* Navmenu - Mobile */
+/* Mobile Navigation */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
     color: var(--nav-color);
@@ -325,10 +352,11 @@ h6 {
     margin: 0;
     border-radius: 6px;
     background-color: var(--nav-mobile-background-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    box-shadow: none;
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   }
 
   .navmenu a,
@@ -386,8 +414,6 @@ h6 {
     padding: 10px 0;
     margin: 10px 20px;
     background-color: var(--nav-dropdown-background-color);
-    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-    box-shadow: none;
     transition: all 0.5s ease-in-out;
   }
 
@@ -431,29 +457,19 @@ h6 {
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
-  --background-color: rgba(255, 255, 255, 0);
   color: var(--default-color);
   background-color: var(--background-color);
   font-size: 14px;
-  padding: 40px 0 0 0;
+  padding: 40px 0;
   position: relative;
 }
 
-.footer .icon {
-  color: var(--accent-color);
-  margin-right: 15px;
-  font-size: 24px;
-  line-height: 0;
+.footer .copyright p {
+  margin-bottom: 0;
 }
 
-.footer h4 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.footer .address p {
-  margin-bottom: 0px;
+.footer .social-links {
+  margin-top: 20px;
 }
 
 .footer .social-links a {
@@ -466,7 +482,7 @@ h6 {
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
   font-size: 16px;
   color: color-mix(in srgb, var(--default-color), transparent 50%);
-  margin-right: 10px;
+  margin: 0 5px;
   transition: 0.3s;
 }
 
@@ -475,18 +491,10 @@ h6 {
   border-color: var(--accent-color);
 }
 
-.footer .copyright {
-  padding: 25px 0;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.footer .copyright p {
-  margin-bottom: 0;
-}
-
 .footer .credits {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 13px;
+  text-align: center;
 }
 
 /*--------------------------------------------------------------
@@ -532,12 +540,12 @@ h6 {
   visibility: hidden;
   opacity: 0;
   right: 15px;
-  bottom: -15px;
+  bottom: 15px;
   z-index: 99999;
   background-color: var(--accent-color);
-  width: 44px;
-  height: 44px;
-  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
   transition: all 0.4s;
 }
 
@@ -555,7 +563,6 @@ h6 {
 .scroll-top.active {
   visibility: visible;
   opacity: 1;
-  bottom: 15px;
 }
 
 /*--------------------------------------------------------------
@@ -644,22 +651,7 @@ section,
 .section-title h2 {
   font-size: 32px;
   font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  position: relative;
-}
-
-.section-title h2:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: var(--accent-color);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
+  margin-bottom: 15px;
 }
 
 .section-title p {
@@ -670,9 +662,7 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
-  --background-color: rgba(255, 255, 255, 0);
   width: 100%;
-  min-height: 100vh;
   position: relative;
   padding: 80px 0;
   display: flex;
@@ -708,8 +698,8 @@ section,
 
 .hero .countdown div {
   text-align: center;
-  border: 2px solid color-mix(in srgb, var(--default-color), white 90%);
-  border-radius: 8px;
+  border-top: 2px solid var(--accent-color);
+  background-color: var(--surface-color);
   margin: 10px 10px;
   width: 100px;
   padding: 15px 0;
@@ -758,11 +748,11 @@ section,
   padding: 6px 8px;
   position: relative;
   background-color: var(--surface-color);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
   box-shadow: 0px 0 20px rgba(0, 0, 0, 0.1);
   display: flex;
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 4px;
 }
 
 .hero .hero-newsletter .newsletter-form:focus-within {
@@ -773,7 +763,7 @@ section,
   border: 0;
   padding: 4px;
   width: 100%;
-  background-color: var(--surface-color);
+  background-color: transparent;
   color: var(--default-color);
 }
 
@@ -789,11 +779,11 @@ section,
   background: var(--accent-color);
   color: var(--contrast-color);
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 0 4px 4px 0;
 }
 
 .hero .hero-newsletter .newsletter-form input[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  background: color-mix(in srgb, var(--accent-color), transparent 10%);
 }
 
 .hero .social-links {
@@ -809,122 +799,96 @@ section,
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
-  font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  font-size: 24px;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
   margin-right: 10px;
   transition: 0.3s;
 }
 
 .hero .social-links a:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
+  color: var(--default-color);
 }
 
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
-.about .content h3 {
-  font-weight: 700;
-  font-size: 34px;
-  margin-bottom: 30px;
+.about ul {
+  list-style: none;
+  padding: 0;
 }
 
-.about .content p {
-  margin-bottom: 30px;
-}
-
-.about .content .about-btn {
-  padding: 8px 30px 9px 30px;
-  color: var(--accent-color);
-  border-radius: 50px;
-  transition: 0.3s;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 13px;
-  display: inline-flex;
+.about ul li {
+  padding-bottom: 5px;
+  display: flex;
   align-items: center;
-  border: 2px solid var(--accent-color);
 }
 
-.about .content .about-btn i {
-  font-size: 16px;
-  padding-left: 5px;
+.about ul i {
+  font-size: 20px;
+  padding-right: 4px;
+  color: var(--accent-color);
 }
 
-.about .content .about-btn:hover {
+.about .read-more {
   background: var(--accent-color);
   color: var(--contrast-color);
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 10px 28px;
+  border-radius: 5px;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.about .icon-box i {
-  font-size: 40px;
-  color: var(--accent-color);
-  margin-bottom: 10px;
-}
-
-.about .icon-box h4 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0 0 10px 0;
-}
-
-.about .icon-box h4 a {
-  color: var(--heading-color);
+.about .read-more i {
+  font-size: 18px;
+  margin-left: 5px;
+  line-height: 0;
   transition: 0.3s;
 }
 
-.about .icon-box p {
-  font-size: 15px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  margin-bottom: 0;
+.about .read-more:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
-.about .icon-box:hover h4 a {
-  color: var(--accent-color);
+.about .read-more:hover i {
+  transform: translate(5px, 0);
 }
 
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
-.contact .info-item+.info-item {
-  margin-top: 40px;
+.contact .info-item {
+  background: color-mix(in srgb, var(--default-color), transparent 96%);
+  padding: 30px;
 }
 
 .contact .info-item i {
+  font-size: 38px;
+  line-height: 0;
   color: var(--accent-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 92%);
-  font-size: 20px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  margin-right: 15px;
 }
 
 .contact .info-item h3 {
-  padding: 0;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin: 20px 0 10px 0;
 }
 
 .contact .info-item p {
   padding: 0;
-  margin-bottom: 0;
+  line-height: 24px;
   font-size: 14px;
-}
-
-.contact .info-item:hover i {
-  background: var(--accent-color);
-  color: var(--contrast-color);
+  margin-bottom: 0;
 }
 
 .contact .php-email-form {
+  background: color-mix(in srgb, var(--default-color), transparent 96%);
+  padding: 30px;
   height: 100%;
 }
 
@@ -936,7 +900,7 @@ section,
   box-shadow: none;
   border-radius: 0;
   color: var(--default-color);
-  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  background-color: var(--surface-color);
   border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
@@ -953,14 +917,14 @@ section,
 }
 
 .contact .php-email-form button[type=submit] {
-  color: var(--contrast-color);
   background: var(--accent-color);
+  color: var(--contrast-color);
   border: 0;
   padding: 10px 30px;
   transition: 0.4s;
-  border-radius: 50px;
+  border-radius: 4px;
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 25%);
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
